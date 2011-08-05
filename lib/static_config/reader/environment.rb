@@ -1,4 +1,5 @@
 require 'static_config/reader/base'
+
 module StaticConfig
   module Reader
     class Environment < Base
@@ -19,6 +20,8 @@ module StaticConfig
           parts.inject(data) { |h, k| h[k] ||= {} }[last_part] = env_value
         end
         data
+      rescue => e
+        raise "Unable to fit #{env_name} into #{data.inspect}"
       end
     end
   end

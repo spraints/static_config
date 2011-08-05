@@ -1,4 +1,6 @@
 require 'static_config/reader/base'
+require 'yaml'
+
 module StaticConfig
   module Reader
     class YamlFile < Base

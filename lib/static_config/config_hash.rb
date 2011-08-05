@@ -1,16 +1,23 @@
 module StaticConfig
-  class ConfigHash < Hash
+  class ConfigHash
     def initialize(data)
-      replace(data)
+      @data = data
     end
 
-    def method_missing(attr)
-      case value = self[attr.to_s]
-      when Hash
-        self.class.new(value)
+    def method_missing(attr, *args)
+      if value = @data[attr.to_s]
+        if value.is_a? Hash
+          ConfigHash.new value
+        else
+          value
+        end
       else
-        value
+        nil
       end
+    end
+
+    def ==(other)
+      super || @data == other
     end
   end
 end

@@ -28,5 +28,8 @@ You could override it at runtime by setting the environment variable
 You can also override the entire `config/my_app.yml` file by storing
 some yaml in an environment variable called `my_app_config`.
 
-This library is rails-friendly, so in development mode it will
-reload the configuration on each request.
+To get your config to reload on each request in Rails, add this:
+
+    Rails.application.config.to_prepare do
+      MyAppConfig.reload!
+    end
