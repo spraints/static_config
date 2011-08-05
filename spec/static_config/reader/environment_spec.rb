@@ -12,10 +12,5 @@ describe StaticConfig::Reader::Environment do
 
   def opts ; { :env_prefix => 'MY_CONFIG' } ; end
   it('reads environment') { should == { 'dev' => { 'key' => 'value' } } }
-
-  context 'with prefix' do
-    def opts ; super.merge :prefix => 'the.prefix' ; end
-    it('adds a prefix') { should == { 'the' => { 'prefix' => { 'dev', { 'key' => 'value' } } } } }
-  end
 end
 

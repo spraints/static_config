@@ -8,9 +8,4 @@ describe StaticConfig::Reader::YamlEnv do
 
   def opts ; { :env => 'my_config_yml' } ; end
   it('loads the yaml') { should == { 'dev' => { 'key' => 'value' } } }
-
-  context 'with prefix' do
-    def opts ; super.merge :prefix => 'the.prefix' ; end
-    it('adds a prefix') { should == { 'the' => { 'prefix' => { 'dev', { 'key' => 'value' } } } } }
-  end
 end
