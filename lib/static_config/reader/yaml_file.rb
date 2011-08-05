@@ -12,8 +12,8 @@ module StaticConfig
 
       protected
       def raw_data
-        data = YAML.load_file(@file)
-        data = data[@section] if @section
+        data = YAML.load_file(@file) if File.exists? @file
+        data = data[@section] if data && @section
         data
       end
     end

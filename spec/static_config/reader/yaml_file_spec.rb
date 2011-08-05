@@ -16,4 +16,19 @@ describe StaticConfig::Reader::YamlFile do
     def opts ; super.merge :section => 'bad' ; end
     it('is empty') { should == {} }
   end
+
+  context 'with an empty file' do
+    def opts ; { :file => "#{__FILE__}.empty" } ; end
+    it('is empty') { should == {} }
+
+    context 'and a section' do
+      def opts ; super.merge :section => 'section' ; end
+      it('is empty') { should == {} }
+    end
+  end
+
+  context 'with a file that does not exist' do
+    def opts ; { :file => "#{__FILE__}.does.not.exist" } ; end
+    it('is empty') { should == {} }
+  end
 end
