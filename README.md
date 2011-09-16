@@ -33,3 +33,5 @@ To get your config to reload on each request in Rails, add this:
     Rails.application.config.to_prepare do
       MyAppConfig.reload!
     end
+
+[![Build Status](https://secure.travis-ci.org/spraints/static_config.png)](http://travis-ci.org/spraints/static_config)
