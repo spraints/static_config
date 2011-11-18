@@ -7,7 +7,7 @@ describe StaticConfig::ConfigProxy do
   context do
     class SimpleReader
       def read
-        {'a' => 'ok', 'nested' => { 'key' => 'also ok' }}
+        {'a' => 'ok', 'nested' => { 'key' => 'also ok' }, 'nottrue' => false}
       end
     end
     let(:reader)  { SimpleReader.new }
@@ -16,6 +16,7 @@ describe StaticConfig::ConfigProxy do
     its('nested')     { should == { 'key' => 'also ok' } }
     its('nested.key') { should == 'also ok' }
     its('missing')    { should be_nil }
+    its('nottrue')    { should == false }
   end
 
   context do

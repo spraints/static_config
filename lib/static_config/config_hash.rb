@@ -5,14 +5,11 @@ module StaticConfig
     end
 
     def method_missing(attr, *args)
-      if value = @data[attr.to_s]
-        if value.is_a? Hash
-          ConfigHash.new value
-        else
-          value
-        end
+      case value = @data[attr.to_s]
+      when Hash
+        ConfigHash.new value
       else
-        nil
+        value
       end
     end
 
