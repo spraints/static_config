@@ -39,6 +39,30 @@ describe StaticConfig::Reader::YamlFile do
     it('is empty') { should == {} }
   end
 
+  context do
+    let(:yaml) { "x: #{yaml_value}" }
+
+    context 'string value' do
+      let(:yaml_value) { '123abc123' }
+      its(['x']) { should == '123abc123' }
+    end
+
+    context 'integer value' do
+      let(:yaml_value) { '123' }
+      its(['x']) { should == 123 }
+    end
+
+    context 'float value' do
+      let(:yaml_value) { '1.5' }
+      its(['x']) { should == 1.5 }
+    end
+
+    context 'false value' do
+      let(:yaml_value) { 'false' }
+      its(['x']) { should == false }
+    end
+  end
+
   BASIC_YAML = <<END_BASIC_YAML
 key: value
 END_BASIC_YAML
