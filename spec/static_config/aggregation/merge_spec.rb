@@ -36,4 +36,16 @@ describe StaticConfig::Aggregation::Merge do
     let(:readers) { [deep_reader_A, deep_reader_B] }
     its(:read) { should == {'really' => {'deep' => {'A' => '1', 'B' => '1'}}} }
   end
+
+  context 'with false in the second reader' do
+    let(:reader_with_false) { Reader.new('b' => false) }
+    context 'and an empty reader first' do
+      let(:readers) { [Reader.new({}), reader_with_false] }
+      its(:read) { should == {'b' => false} }
+    end
+    context 'and a different value in the first reader' do
+      let(:readers) { [reader_B, reader_with_false] }
+      its(:read) { should == {'b' => false} }
+    end
+  end
 end
