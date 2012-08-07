@@ -37,7 +37,7 @@ module StaticConfig
         case env_value
         when /^\d+$/
           env_value.to_i
-        when /^(\d*\.\d+)|(\d+\.\d*)$/
+        when /^(\d*\.\d+|\d+\.\d*)$/
           env_value.to_f
         when 'true'
           true

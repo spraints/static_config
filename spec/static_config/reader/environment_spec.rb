@@ -39,12 +39,14 @@ describe StaticConfig::Reader::Environment do
       'MY_CONFIG_FALSE' => 'false',
       'MY_CONFIG_FLOAT' => '123.45',
       'MY_CONFIG_STRING' => 'string',
+      'MY_CONFIG_IP' => '10.10.10.10',
     })
     it { subject['int'].should == 123 }
     it { subject['true'].should == true }
     it { subject['false'].should == false }
     it { subject['float'].should == 123.45 }
     it { subject['string'].should == 'string' }
+    it { subject['ip'].should == '10.10.10.10' }
   end
 end
 
